@@ -198,7 +198,7 @@ impl ExpressionEvaluatorCache {
             let read = self.0.read().map_err(|_| {
                 Error::new(
                     ErrorKind::Unexpected,
-                    "PartitionFilterCache RwLock was poisoned",
+                    "ExpressionEvaluatorCache RwLock was poisoned",
                 )
             })?;
 
@@ -212,7 +212,7 @@ impl ExpressionEvaluatorCache {
             .map_err(|_| {
                 Error::new(
                     ErrorKind::Unexpected,
-                    "ManifestEvaluatorCache RwLock was poisoned",
+                    "ExpressionEvaluatorCache RwLock was poisoned",
                 )
             })
             .unwrap()
@@ -227,7 +227,7 @@ impl ExpressionEvaluatorCache {
             .map_err(|_| {
                 Error::new(
                     ErrorKind::Unexpected,
-                    "ManifestEvaluatorCache RwLock was poisoned",
+                    "ExpressionEvaluatorCache RwLock was poisoned",
                 )
             })
             .unwrap();
