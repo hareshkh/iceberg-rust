@@ -1,0 +1,22 @@
+name: Claude Assistant
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  assistant:
+    name: Run Claude Assistant
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
+    uses: standards/claude-code-actions-workflows/.github/workflows/claude-assistant.yml@release/v1

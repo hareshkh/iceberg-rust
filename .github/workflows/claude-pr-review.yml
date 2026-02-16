@@ -1,0 +1,17 @@
+# Trigger this workflow by adding the `claude-review` label to a PR
+name: PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, labeled]
+
+jobs:
+  review:
+    name: Claude Code Review
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+      issues: read
+      pull-requests: write
+    uses: standards/claude-code-actions-workflows/.github/workflows/claude-pr-review.yml@release/v1
