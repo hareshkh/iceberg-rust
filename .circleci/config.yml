@@ -23,7 +23,13 @@ jobs:
           name: Install Rust toolchain
           command: |
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-            echo 'source $HOME/.cargo/env' >> $BASH_ENV
+            if [ -f "$HOME/.cargo/env" ]; then
+              . "$HOME/.cargo/env"
+              echo '. "$HOME/.cargo/env"' >> $BASH_ENV
+            elif [ -f "/usr/local/cargo/env" ]; then
+              . "/usr/local/cargo/env"
+              echo '. "/usr/local/cargo/env"' >> $BASH_ENV
+            fi
       - run:
           name: Install protoc
           command: |
@@ -62,10 +68,10 @@ jobs:
             exit 0
           fi
 
-          # Requires Rust 1.90.0+
           cargo publish \
             --registry palantir \
             --token "Basic $(echo -n $ARTIFACTORY_USERNAME:$ARTIFACTORY_PASSWORD | base64 -w0)" \
+            -Z package-workspace \
             --workspace \
             --no-verify
 
