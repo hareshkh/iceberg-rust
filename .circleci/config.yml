@@ -37,8 +37,8 @@ jobs:
       - run: |
           cargo clippy --all --all-targets --locked
       - run:
-          name: Start test infrastructure (pre-built images only)
-          command: docker compose -f dev/docker-compose.yaml up -d 
+          name: Start test infrastructure
+          command: docker compose -f dev/docker-compose.yaml up -d --build --wait
       - run:
           name: Run tests
           command: cargo test --all --locked
