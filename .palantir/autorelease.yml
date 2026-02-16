@@ -1,1 +1,4 @@
 version: 3
+allow_patch_releases_on_major_series_branches: true
+options:
+  repo_type: RUST
